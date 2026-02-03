@@ -1,0 +1,42 @@
+class Solution {                                           //(using 2 array one is outdegree another is indegree)
+    public int findJudge(int n, int[][] trust) {
+        int[]degree = new int[n+1];
+
+        for (int[] t : trust) {
+            int a = t[0];
+            int b = t[1];
+
+            outdegree[a]++;
+            indegree[b]++;
+
+        }
+          for (int i = 1; i <= n; i++) {
+            if (indegree[i] == n - 1 && outdegree[i] == 0) {
+                return i;
+            }
+        }
+        return -1;
+    }
+    
+}
+
+
+Method-2(with only 1 array )
+
+class Solution {
+    public int findJudge(int n, int[][] trust) {
+        int [] degree = new int[n+1];
+
+        for(int[] edge:trust){
+            degree[edge[0]]--;
+            degree[edge[1]]++;
+        }
+        for(int i = 1; i<= n; i++){
+            if(degree[i] == n -1){
+                return i;
+            }
+        }
+        return -1;
+    }
+    
+}
